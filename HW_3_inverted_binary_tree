@@ -1,0 +1,42 @@
+# Complexity time = O(N), memory = O(h) (h - высота дерева)
+
+from collections import deque
+
+сlass TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value  # Значение текущего узла
+        self.left = left    # Левый потомок
+        self.right = right  # Правый потомок
+
+
+def flip_binary_tree(node):
+    if node is None:
+        return None
+
+    # Переключаем левую и правую ветви
+    node.left, node.right = node.right, node.left
+
+    # Рекурсивно обрабатываем потомков
+    flip_binary_tree(node.left)
+    flip_binary_tree(node.right)
+
+    return node
+
+
+def display_tree(root):
+    '''Выводит узлы дерева в порядке уровневого обхода.'''
+
+    if root is None:
+        print("Дерево не содержит узлов")
+        return
+
+    queue = deque([root])  # Очередь для обхода узлов
+
+    while queue:
+        current = queue.popleft()  # Извлекаем следующий узел
+        print(current.value, end=" ")  # Печатаем значение текущего узла
+        if current.left:
+            queue.append(current.left)  # Добавляем левого потомка
+        if current.right:
+            queue.append(current.right)  # Добавляем правого потомка
+    print()
