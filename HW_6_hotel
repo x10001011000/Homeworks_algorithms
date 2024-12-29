@@ -1,37 +1,29 @@
-# Complexity : time = O(N?) # из-за перебора, memory = O() 
+# Complexity : time = O(N**2), memory = O(N) 
 
+from datetime import datetime, timedelta
 
 class GuestChecking:
   def __init__(self, guests): # на вход дается список кортежей
     self.guests = guests
+    self.dates_list = []
     self.day_max = ''
 
   def new_guest(self, check_in, check_out):
     '''Имеем возможность добавить дату заселения и выселения нового гостя'''
     self.guests.append((check_in, check_out))
 
-  def date_range():
-# мб + count?, ее бы инкапсулировать
-    list_for_count = []
+  def date_range(self):
     for date in self.guests:
-      # получим 1 кортеж a,b = *date
-      # расширим его , диапазон от до, заполнение промежутка мб из библиотеки? from a to b
+      start_date = datetime.strptime(date[0], "%Y-%m-%d")
+      end_date = datetime.strptime(date[1], "%Y-%m-%d")
 
+      current_date = start_date
+      while current_date <= end_date:
+        self.dates_list.append(current_date.strftime("%Y-%m-%d"))
+        current_date += timedelta(days=1)
 
-
-      # загоняю все в один список 
-
-      
-      # считаем количество каждой уникальной даты в списке 
-      
-
-  def finding_max():
-    
-    print('Самый загруженный гостями день за период:', ) # как бы сюда засунуть его 
-
-# для расчета периодов импорт структуры данных дата 
-# для каждого кортежа сделать диапазон дат. 
-# добавить каждое значение в словарь. в словарь добавляются countы, где ключ = дата, а значение = count
-# находим максимальный count
+  def finding_max(self):
+    self.day_max = max(set(self.dates_list), key=self.dates_list.count)
+    print('Самый загруженный гостями день за период:', self.day_max)  
 
 
