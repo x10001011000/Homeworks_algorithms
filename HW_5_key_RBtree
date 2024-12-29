@@ -5,8 +5,8 @@ class RBTreeNode:
         self.key = key      # Ключ узла
         self.value = value  # Значение узла
         self.color = color  # Цвет узла ("red" или "black")
-        self.left = left    # Левый ребенок
-        self.right = right  # Правый ребенок
+        self.left = left    # Левый потомок
+        self.right = right  # Правый потомок
         self.parent = parent  # Родительский узел
 
 
