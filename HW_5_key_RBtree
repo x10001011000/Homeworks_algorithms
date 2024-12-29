@@ -1,3 +1,5 @@
+# Complexity time = O(logN), memory = O(N)
+
 class RBTreeNode:
     def __init__(self, key, value, color="red", left=None, right=None, parent=None):
         self.key = key      # Ключ узла
